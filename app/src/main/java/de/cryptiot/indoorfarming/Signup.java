@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import static android.content.ContentValues.TAG;
+import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
+import com.amazonaws.services.cognitoidentityprovider.model.UserContextDataType;
 
 public class Signup extends AppCompatActivity {
     // ############################################################# View Components
@@ -64,6 +66,13 @@ public class Signup extends AppCompatActivity {
                     authentication.addAttribute("phone_number", etMobile.getText().toString().replace(" ", ""));
                     authentication.addAttribute("email", etEmail.getText().toString().replace(" ", ""));
                     authentication.signUpInBackground(userId, etPass.getText().toString());
+                    UserContextDataType contextData = null;
+                    Log.d(TAG, "yizhen" );
+                    System.out.println("yizhen");
+                    UserContextDataProvider provider = UserContextDataProvider.getInstance();
+                    String encodedData = provider.getEncodedContextData(getApplicationContext(), "yizhen.xu@hostar.com", "us-west-2_PrUB9qJPh", "7b6ggh5t4h60hhaemqqq2ioapj");
+                    System.out.println("Msg:"+encodedData);
+                    Log.d(TAG, "Msg:" + encodedData);
                 }
                 else{
 
